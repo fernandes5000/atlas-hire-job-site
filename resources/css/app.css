@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-cream: #f5f1e8;
+    --color-ink: #07111d;
+    --color-clay: #ff8159;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@keyframes drift {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(0, 22px, 0) scale(1.04);
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@layer components {
+    .panel-shell {
+        @apply rounded-[2rem] border border-white/75 bg-white/78 shadow-[0_30px_80px_rgba(15,23,42,0.12)] backdrop-blur;
+    }
+
+    .surface-card {
+        @apply rounded-[1.75rem] border border-slate-200/70 bg-white/88 p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur;
+    }
+
+    .section-label {
+        @apply inline-flex items-center gap-2 rounded-full border border-slate-300/80 bg-white/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-slate-600;
+    }
+
+    .button-primary {
+        @apply inline-flex items-center justify-center rounded-full bg-[var(--color-ink)] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-900;
+    }
+
+    .button-secondary {
+        @apply inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:border-slate-900;
+    }
+
+    .meta-label {
+        @apply text-xs font-semibold uppercase tracking-[0.24em] text-slate-500;
+    }
+
+    .meta-value {
+        @apply mt-2 text-sm font-medium text-slate-900;
+    }
+
+    .content-list {
+        @apply space-y-3 text-base leading-7 text-slate-700;
+    }
+
+    .content-list li {
+        @apply relative pl-6;
+    }
+
+    .content-list li::before {
+        content: '';
+        @apply absolute left-0 top-3 h-2 w-2 rounded-full bg-[var(--color-clay)];
+    }
+
+    .fade-up {
+        animation: rise 0.7s ease-out both;
+    }
+
+    .fade-up-delay-1 {
+        animation-delay: 0.08s;
+    }
+}
